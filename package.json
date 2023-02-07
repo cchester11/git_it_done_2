@@ -1,0 +1,15 @@
+{
+  "name": "git-it-done-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "homepage.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jquery": "^3.6.3"
+  }
+}

@@ -1,0 +1,35 @@
+<!-- main container
+1) holds an h3 that says 'search by user' 
+holds a form that lets the user search for a user
+a button in the form for submission
+2) holds a container which displays searched for results -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+<body>
+      <header>
+            <h1>GitBuddy</h1>
+      </header>
+      <main>
+            <div>
+                  <h3>Search for a User</h3>
+                  <form>      
+                        <label for="username">Username</label>
+                        <input  id="username_input_value" type="text" placeholder="search for a username" name="username"/>
+                        <button id="submit_input_button" type="submit">Submit</button>
+                  </form>
+            </div>
+            <div id="results_parent_container">
+                  <h2>Showing repositories for: <span id="search_value_span_el"></span></h2>
+                  <div id="search_results_div"></div>
+            </div>
+      </main>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./assets/homepage.js"></script>
+</html>
