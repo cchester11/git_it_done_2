@@ -1,4 +1,3 @@
-// dom manipulation vars
 const username_input_value = $('#username_input_value')
 const submit_input_button = $('#submit_input_button')
 const search_value_span_el = $('#search_value_span_el')
@@ -76,11 +75,19 @@ function inputSubmission (event) {
 
 $(submit_input_button).on('click', inputSubmission)
 $(search_results_div).on('click', (event) => {
-      // splice the repoName var so that only the name shows
-      let repoContainer = event.target
-      // figure out how to grab the div clicked with the below var
-      let repoName = event.target.textContent
-      console.log(repoContainer)
+      let repo_container = event.target
+      let repo = event.target.textContent
+      let repo_name = repo.split('')
+      let slash = repo_name.indexOf('/')
+
+      if(slash !== -1) {
+            repo_name.splice(0, slash + 1)
+      }
+      let new_repo_name = repo_name.join('')
+      console.log(new_repo_name)
+
+
+      console.log(repo_container)
 
       // call the fetch function for single repo with the spliced name
       // map through each issue (use display single repo function)
