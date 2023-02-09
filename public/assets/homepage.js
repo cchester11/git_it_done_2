@@ -20,12 +20,12 @@ function displayResults(repos, user) {
       })
 }
 
-// displayIssues function
-// takes a container parameter
-// takes in data parameter
-// maps data
-// creates dom container for data
-// appends dom container to container parameter
+function displayIssues(data, container) {
+      // maps data
+      // creates dom container for data
+      // appends dom container to container parameter
+      console.log(data, container)
+}
 
 function fetchRepos(user) {
       fetch("https://api.github.com/users/" + user + "/repos", {
@@ -47,16 +47,15 @@ function fetchRepos(user) {
             })
 }
 
-function fetchSingleRepo(owner, repo) {
-      fetch("https://api.github.com/repos/"+owner+"/"+repo+"/issues?state=open", {
+function fetchSingleRepoIssues(owner, repo, container) {
+      fetch("https://api.github.com/repos/" + owner + "/" + repo + "/issues?state=open", {
             method: 'GET'
       })
             .then(results => {
                   if (results.ok) {
                         results.json()
                               .then(data => {
-                                    // displayIssues(data)
-                                    (data.length === 0) ? alert('There are no active issues associated with this repo') : console.log(data)
+                                    (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
                               })
                   } else {
                         alert('Error: ' + results.statusText)
@@ -86,9 +85,5 @@ $(search_results_div).on('click', (event) => {
 
       let owner = (slash !== -1) ? repo.substring(0, slash) : alert('Please enter a valid repo name')
       let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
-      fetchSingleRepo(owner, name, container)
-
-      // map through each issue (use display single repo function)
-      // create dom elements that will contain each issue
-      // append the list of issues to the clicked on div
+      fetchSingleRepoIssues(owner, name, container)
 })
