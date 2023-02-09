@@ -21,6 +21,8 @@ function displayResults (repos, user) {
       })
 }
 
+// display single repo function
+
 function fetchRepos (user) {
       fetch("https://api.github.com/users/" + user + "/repos", {
             method: 'get'
@@ -41,6 +43,26 @@ function fetchRepos (user) {
             })
 }
 
+function fetchSingleRepo (repo) {
+      fetch("https://api.github.com/repos/" + repo + "/issues?direction=asc", {
+            method: 'get'
+      })
+            .then(results => {
+                  if(results.ok) {
+                        results.json()
+                        .then(data => {
+                              displaySingleRepo(data)
+                              console.log(data)
+                        })
+                  } else {
+                        alert('Error: ' + results.statusText)
+                  }
+            })
+            .catch(err => {
+                  throw new Error(err)
+            })
+}
+
 function inputSubmission (event) {
       event.preventDefault()
       let user = username_input_value.val()
@@ -54,7 +76,7 @@ function inputSubmission (event) {
 
 $(submit_input_button).on('click', inputSubmission)
 $(search_results_div).on('click', (event) => {
-      let repo = event.target.value
+      let repo = event.target.textContent
 
-      console.log(repo)
+
 })

@@ -1,0 +1,5 @@
+1. install handlebars
+2. write api route that writes to the json file which will store the repo name
+3. redirect to single repo page
+4. single repo page calls a get route that retrieves the name. (json file is imported into api routes file in order to access name)
+5. single repo displays returned name
