@@ -76,7 +76,14 @@ function inputSubmission (event) {
 
 $(submit_input_button).on('click', inputSubmission)
 $(search_results_div).on('click', (event) => {
-      let repo = event.target.textContent
+      // splice the repoName var so that only the name shows
+      let repoContainer = event.target
+      // figure out how to grab the div clicked with the below var
+      let repoName = event.target.textContent
+      console.log(repoContainer)
 
-
+      // call the fetch function for single repo with the spliced name
+      // map through each issue (use display single repo function)
+      // create dom elements that will contain each issue
+      // append the list of issues to the clicked on div
 })

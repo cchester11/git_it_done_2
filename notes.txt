@@ -1,3 +1,7 @@
+Beta
+## When user clicks on a displayed repo, a list of issues populates
+1. 
+Implementation after Beta
 1. install handlebars
 2. write api route that writes to the json file which will store the repo name
 3. redirect to single repo page
