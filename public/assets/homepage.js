@@ -75,19 +75,11 @@ function inputSubmission (event) {
 
 $(submit_input_button).on('click', inputSubmission)
 $(search_results_div).on('click', (event) => {
-      let repo_container = event.target
+      let repo_container = event.target.parentElement
       let repo = event.target.textContent
-      let repo_name = repo.split('')
-      let slash = repo_name.indexOf('/')
+      let slash = repo.indexOf('/')
 
-      if(slash !== -1) {
-            repo_name.splice(0, slash + 1)
-      }
-      let new_repo_name = repo_name.join('')
-      console.log(new_repo_name)
-
-
-      console.log(repo_container)
+      let new_repo_name = (slash !== 1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
 
       // call the fetch function for single repo with the spliced name
       // map through each issue (use display single repo function)
