@@ -9,8 +9,8 @@ Implementation after Beta
       - write files for homepage and single page in views (done)
 2. modulize route structure
       - write routes folder (done)
-      - send render route for homepage to route folder
-      - edit the server file to use routes folder
+      - send render route for homepage to route folder (done)
+      - edit the server file to use routes folder (done)
 Ideas after post beta phase
 1. store search history in json file 
 Implementation for Alpha
