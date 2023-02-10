@@ -21,10 +21,16 @@ function displayResults(repos, user) {
 }
 
 function displayIssues(data, container) {
-      // maps data
-      // creates dom container for data
-      // appends dom container to container parameter
-      console.log(data, container)
+      data.map((issue, i) => {
+            let issue_container = $('<div>')
+            let issue_item = $('<li>')
+            let issue_text = `${issue.title}`
+            console.log(issue_text)
+            $(issue_item).text(issue_text)
+
+            issue_container.append(issue_item)
+            container.append(issue_container)
+      })
 }
 
 function fetchRepos(user) {
@@ -53,13 +59,13 @@ function fetchSingleRepoIssues(owner, repo, container) {
       })
             .then(results => {
                   if (results.ok) {
-                        results.json()
-                              .then(data => {
-                                    (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
-                              })
-                  } else {
+                        return results.json()
+                  } else if (!results.ok) {
                         alert('Error: ' + results.statusText)
                   }
+            })
+            .then(data => {
+                  (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
             })
             .catch(err => {
                   throw new Error(err)
