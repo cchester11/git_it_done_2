@@ -24,7 +24,7 @@ function displayIssues(data, container) {
       data.map((issue, i) => {
             let issue_container = document.createElement('div')
             let issue_item = document.createElement('ul')
-            let issue_text = `${issue.title}`
+            let issue_text = `Issue${i+1}: ${issue.title}`
             console.log(issue_text)
             issue_item.textContent = issue_text
 
