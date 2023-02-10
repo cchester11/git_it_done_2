@@ -1,4 +1,4 @@
-Beta
+Beta (done)
 ## When user clicks on a displayed repo, a list of issues populates
 1. 
 Implementation after Beta
@@ -7,3 +7,6 @@ Implementation after Beta
 3. redirect to single repo page
 4. single repo page calls a get route that retrieves the name. (json file is imported into api routes file in order to access name)
 5. single repo displays returned name
+Implementation for Alpha
+1. Install React 
+2. create components for homepage and single page
