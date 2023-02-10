@@ -23,7 +23,7 @@ function displayResults(repos, user) {
 function displayIssues(data, container) {
       data.map((issue, i) => {
             let issue_container = document.createElement('div')
-            let issue_item = document.createElement('li')
+            let issue_item = document.createElement('ul')
             let issue_text = `${issue.title}`
             console.log(issue_text)
             issue_item.textContent = issue_text
