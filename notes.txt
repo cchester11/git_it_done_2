@@ -3,6 +3,10 @@ Beta (done)
 1. 
 Implementation after Beta
 1. install handlebars
+      - install express-handlebars 
+      - configure server to use express as view engine
+      - create folder for main and views
+      - write files for homepage and single page in views
 2. write api route that writes to the json file which will store the repo name
 3. redirect to single repo page
 4. single repo page calls a get route that retrieves the name. (json file is imported into api routes file in order to access name)
