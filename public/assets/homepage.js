@@ -22,14 +22,14 @@ function displayResults(repos, user) {
 
 function displayIssues(data, container) {
       data.map((issue, i) => {
-            let issue_container = $('<div>')
-            let issue_item = $('<li>')
+            let issue_container = document.createElement('div')
+            let issue_item = document.createElement('li')
             let issue_text = `${issue.title}`
             console.log(issue_text)
-            $(issue_item).text(issue_text)
+            issue_item.textContent = issue_text
 
-            issue_container.append(issue_item)
-            container.append(issue_container)
+            issue_container.appendChild(issue_item)
+            container.appendChild(issue_container)
       })
 }
 
