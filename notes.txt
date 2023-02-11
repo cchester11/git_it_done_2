@@ -1,5 +1,5 @@
 Beta (done)
-## When user clicks on a displayed repo, a list of issues populates
+## When user clicks on a displayed repo, a list of issues populates (done)
 1. 
 Implementation after Beta
 1. install handlebars (done)
@@ -11,6 +11,11 @@ Implementation after Beta
       - write routes folder (done)
       - send render route for homepage to route folder (done)
       - edit the server file to use routes folder (done)
+
+Issues 
+1. When user clicks a repo that has already been clicked, the issues for that repo populate in a container div again. and again if clicked again
+
+
 Ideas after post beta phase
 1. store search history in json file 
 Implementation for Alpha
