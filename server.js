@@ -6,6 +6,8 @@ const { engine } = require('express-handlebars')
 const path = require('path')
 const routes = require('./routes')
 
+const lint_check = require('./lint.js')
+
 const app = express()
 // set up handlebars as the view engine for our express middleware
 app.engine('handlebars', engine())
@@ -18,5 +20,6 @@ app.use('/', routes)
 
 // fire up the server
 app.listen(3000, () => {
+      lint_check()
       console.log('server running on port 3000')
 })
