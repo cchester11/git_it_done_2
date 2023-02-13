@@ -11,7 +11,7 @@ function lint_check() {
         if (code === 0) {
             console.log('ESlint found no errors. Great Job!')
         } else {
-            console.error('ESlint found the following errors with exit code: ' + code)
+            console.error('ESlint found ' + code +  ' errors with exit code.')
         }
     });
 }

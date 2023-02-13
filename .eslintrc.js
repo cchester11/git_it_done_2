@@ -17,6 +17,7 @@ module.exports = {
         "ecmaVersion": "latest"
     },
     "rules": {
+        "eqeqeq": "error",
         "no-duplicate-imports": ["warn", { "includeExports": true }],
         "jquery/no-ajax": "off",
         "jquery/no-animate": "off"
