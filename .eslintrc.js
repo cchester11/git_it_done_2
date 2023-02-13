@@ -1,7 +1,10 @@
 module.exports = {
-    "plugins": [ 
-        "jquery" 
+    "plugins": [
+        "jquery"
     ],
+    "globals": {
+        "$": true
+    },
     "env": {
         "browser": true,
         "commonjs": true,
@@ -14,6 +17,8 @@ module.exports = {
         "ecmaVersion": "latest"
     },
     "rules": {
-        "no-duplicate-imports": ["warn", {"includeExports": true}]
+        "no-duplicate-imports": ["warn", { "includeExports": true }],
+        "jquery/no-ajax": "off",
+        "jquery/no-animate": "off"
     }
 }

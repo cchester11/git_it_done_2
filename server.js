@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 // dependencies
 const express = require('express')
 const { engine } = require('express-handlebars')
