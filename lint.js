@@ -1,11 +1,11 @@
 /* eslint-env node */
+const { spawn } = require('child_process')
+const dotenv = require('dotenv')
 
 function lint_check() {
-    // requiring the spawn method (an event method) from the 'child_process' module (similar to requiring the 'path' or 'fs' module)
-    const { spawn } = require('child_process')
-
+    dotenv.config();
     if (process.platform === 'win32') {
-        const windows_child = spawn('C://Users//Charles//scoop//apps//nodejs//current//node_modules//npm//bin//npm.cmd', ['run', 'lint'])
+        const windows_child = spawn(process.env.WINDOWS_LINT_COMMAND, ['run', 'lint'])
         // It looks like this function will execute after the spawn method has run the lint script (on exit) and if an object returns with no errors, the call back will console.log('No errors') message below.
         windows_child.on('exit', (code) => {
             if (code === 0) {
