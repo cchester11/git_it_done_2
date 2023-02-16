@@ -1,6 +1,6 @@
 /* eslint-env node */
 const { spawn } = require('child_process')
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 
 function lint_check() {
     dotenv.config();
@@ -23,15 +23,20 @@ function lint_check() {
         });
     } else if(process.platform === 'darwin') {
         const mac_child = spawn('npm', ['run', 'lint'])
-
+        let output = ''
+        mac_child.stdout.on('data', (data) => {
+            output += data.toString()
+        })
+        mac_child.stderr.on('data', (data) => {
+            output += data.toString()
+        })
         mac_child.on('exit', (code) => {
             if(code === 0) {
                 console.log('ESlint found no errors. Great Job!')
             } else {
-                console.error('ESlint found ' + code + ' errors with exit code.')
+                console.log(output)
             }
         });
     }
-};
-
-module.exports = lint_check;
+}
+module.exports = lint_check
