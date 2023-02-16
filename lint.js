@@ -6,8 +6,15 @@ function lint_check() {
     dotenv.config();
     if (process.platform === 'win32') {
         const windows_child = spawn(process.env.WINDOWS_LINT_COMMAND, ['run', 'lint'])
-        // It looks like this function will execute after the spawn method has run the lint script (on exit) and if an object returns with no errors, the call back will console.log('No errors') message below.
+        let output = ''
+        windows_child.stdout.on('data', (data) => {
+            output += data.toString()
+        })
+        windows_child.stderr.on('data', (data) => {
+            output += data.toString()
+        })
         windows_child.on('exit', (code) => {
+            console.log(output)
             if (code === 0) {
                 console.log('ESlint found no errors. Great Job!')
             } else {
