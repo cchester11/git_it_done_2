@@ -87,6 +87,11 @@ $(submit_input_button).on('click', inputSubmission)
 $(search_results_div).on('click', (event) => {
       let container = event.target.parentElement
       let repo = event.target.textContent
+
+      if($(container).find('ul').length > 0) {
+            return;
+      }
+
       let slash = repo.indexOf('/')
 
       let owner = (slash !== -1) ? repo.substring(0, slash) : alert('Please enter a valid repo name')
