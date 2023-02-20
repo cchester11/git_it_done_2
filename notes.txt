@@ -13,8 +13,8 @@ Implementation after Beta
       - edit the server file to use routes folder (done)
 
 Issues 
-1. When user clicks a repo that has already been clicked, the issues for that repo populate in a container div again. and again if clicked again
-
+(done) 1. When user clicks a repo that has already been clicked, the issues for that repo populate in a container div again. and again if clicked again
+2. When searching for a user after a previous search, page needs to reload with new data
 
 Ideas after post beta phase
 1. store search history in json file 
