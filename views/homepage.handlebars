@@ -1,19 +1,31 @@
 <header>
-      <h1>GitBuddy</h1>
+      <div class="container-fluid row">
+            <div class="col-10 justify-content-start align-content-center">
+                  <h1 class="bg-light badge text-dark fs-2 m-3">GitBuddy</h1>
+            </div>
+            <div class="col-2">
+                  <div class="justify-content-end">
+                        <a href="https://www.flaticon.com/free-icons/github" target="_blank" "github icons"><img src="/images/github.png" alt="github icon" class="m-3" width="75px" height="75px"/></a>
+                  </div>
+            </div>
+      </div>
 </header>
 <main>
-      <div class=" container m-2 text-light">
+      <div class=" container m-2 text-light w-25">
             <h3>Search by User</h3>
             <form class="input-group m-3 ">
                   <label class="form-label m-2" for="username">Username</label>
-                  <input class="input-group-text" id="username_input_value" type="text" placeholder="search for a username" name="username" />
+                  <input class="input-group-text" id="username_input_value" type="text"
+                        placeholder="search for a username" name="username" />
                   <button class="btn btn-dark text-light" id="submit_input_button" type="submit">Submit</button>
             </form>
       </div>
-      <div class="container m-2 text-light" id="results_parent_container">
+      <div class="container m-2 text-light w-35" id="results_parent_container">
             <h2>Showing repositories for: <span id="search_value_span_el"></span></h2>
             <div id="search_results_div"></div>
       </div>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/homepage.js"></script>

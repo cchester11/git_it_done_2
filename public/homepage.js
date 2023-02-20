@@ -11,6 +11,8 @@ function displayResults(repos, user) {
 
       repos.map((repo) => {
             let container = $('<div>')
+            $(container).attr('class', 'card-body bg-dark text-light border border-success-subtle m-1 rounded')
+            $(container).attr('style', "--bs-border-opacity: .5;")
             let repoNameContainer = $('<h2>')
             let repoName = `${repo.full_name}`
             $(repoNameContainer).text(repoName)
