@@ -4,6 +4,8 @@ const search_value_span_el = $('#search_value_span_el')
 const search_results_div = $('#search_results_div')
 
 function displayResults(repos, user) {
+      $(search_results_div).empty()
+      $(search_value_span_el).empty()
       $(search_value_span_el).text(user)
       if (repos.length === 0) {
             alert(`No results showing for ${user}`)
