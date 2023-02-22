@@ -23,10 +23,12 @@ function displayResults(repos, user) {
 }
 
 function displayIssues(data, container) {
-      data.map((issue, i) => {
+      data.map((issue) => {
             let issue_container = document.createElement('div')
+            $(issue_container).attr('class', 'card-group bg-light text-dark fs-4')
             let issue_item = document.createElement('ul')
-            let issue_text = `Issue${i+1}: ${issue.title}`
+            $(issue_item).attr('class', 'card-text')
+            let issue_text = `Issue: ${issue.title}`
             console.log(issue_text)
             issue_item.textContent = issue_text
 
