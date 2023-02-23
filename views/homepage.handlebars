@@ -5,22 +5,29 @@
             </div>
             <div class="col-2">
                   <div class="justify-content-end">
-                        <a href="https://www.flaticon.com/free-icons/github" target="_blank" "github icons"><img src="/images/github.png" alt="github icon" class="m-3" width="75px" height="75px"/></a>
+                        <a href="https://www.flaticon.com/free-icons/github" target="_blank" "github icons"><img
+                                    src="/images/github.png" alt="github icon" class="m-3" width="75px"
+                                    height="75px" /></a>
                   </div>
             </div>
       </div>
 </header>
 <main>
-      <div class=" container m-2 text-light w-25">
-            <h3>Search by User</h3>
-            <form class="input-group m-3 ">
-                  <label class="form-label m-2" for="username">Username</label>
-                  <input class="input-group-text" id="username_input_value" type="text"
-                        placeholder="search for a username" name="username" />
-                  <button class="btn btn-dark text-light" id="submit_input_button" type="submit">Submit</button>
-            </form>
+      <div class="container-fluid row m-2 text-light">
+            <div class="col-3">
+                  <h3>Search by User</h3>
+                  <form class="input-group m-3 ">
+                        <label class="form-label m-2" for="username">Username</label>
+                        <input class="input-group-text" id="username_input_value" type="text"
+                              placeholder="search for a username" name="username" />
+                        <button class="btn btn-dark text-light" id="submit_input_button" type="submit">Submit</button>
+                  </form>
+            </div>
+            <div class="col-1" id="trash_bin">
+                  <img src="/images/bin.png" alt="trash bin" width="50px" height="50px" />
+            </div>
       </div>
-      <div class="container m-2 text-light w-35" id="results_parent_container">
+      <div class="container m-3 text-light w-35" id="results_parent_container">
             <h2>Showing repositories for: <span id="search_value_span_el"></span></h2>
             <div id="search_results_div"></div>
       </div>
