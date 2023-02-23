@@ -7,10 +7,10 @@ function setLocalStorage (searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
 } 
 
-function onReload () {
-      let searchVal = JSON.parse(localStorage.getItem('stored_search_val'));
-      fetchRepos(searchVal)
-}
+// function onReload () {
+//       let searchVal = JSON.parse(localStorage.getItem('stored_search_val'));
+//       fetchRepos(searchVal)
+// }
 
 function displayResults(repos, user) {
       $(search_results_div).empty()
