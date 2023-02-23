@@ -3,13 +3,37 @@ const submit_input_button = $('#submit_input_button')
 const search_value_span_el = $('#search_value_span_el')
 const search_results_div = $('#search_results_div')
 
-function setLocalStorage (searchVal) {
+function setLocalStorage(searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
-} 
+}
 
-// function onReload () {
+// function onReload() {
 //       let searchVal = JSON.parse(localStorage.getItem('stored_search_val'));
-//       fetchRepos(searchVal)
+//       fetch("https://api.github.com/users/" + searchVal + "/repos", {
+//             method: 'get'
+//       })
+//             .then(results => {
+//                   if (results.ok) {
+//                         results.json()
+//                   } else {
+//                         alert("Error: " + response.statusText)
+//                         return;
+//                   }
+//             })
+//             .then(data => {
+//                   $(search_value_span_el).text(searchVal)
+//                   data.map((repo) => {
+//                         let container = $('<div>')
+//                         $(container).attr('class', 'card-body bg-dark text-light border border-success-subtle m-1 rounded')
+//                         $(container).attr('style', "--bs-border-opacity: .5;")
+//                         let repoNameContainer = $('<h2>')
+//                         let repoName = `${repo.full_name}`
+//                         $(repoNameContainer).text(repoName)
+
+//                         container.append(repoNameContainer)
+//                         search_results_div.append(container)
+//                   })
+//             })
 // }
 
 function displayResults(repos, user) {
@@ -105,7 +129,7 @@ $(search_results_div).on('click', (event) => {
       let container = event.target.parentElement
       let repo = event.target.textContent
 
-      if($(container).find('ul').length > 0) {
+      if ($(container).find('ul').length > 0) {
             return;
       }
 
