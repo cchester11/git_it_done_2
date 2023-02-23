@@ -92,7 +92,7 @@ function inputSubmission(event) {
       setLocalData('')
       let user = username_input_value.val()
       setLocalSearchVal(user)
-      if (user) {
+      if (user !== '') {
             fetchRepos(user)
             username_input_value.val('')
       } else {
@@ -120,6 +120,10 @@ $(window).on('load', function() {
       let storedVal = JSON.parse(localStorage.getItem('stored_search_val'));
       let storedData = JSON.parse(localStorage.getItem('stored_search_data'));
 
+      if(storedData === '' && storedVal === '') {
+            return;
+      }
+      
       $(search_value_span_el).text(storedVal)
       storedData.map((repo) => {
             let container = $('<div>')
