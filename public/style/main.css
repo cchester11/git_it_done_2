@@ -10,6 +10,13 @@ body {
     font-weight: lighter;
 }
 
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -50px; /* This should be the same height as the footer */
+    box-sizing: border-box;
+    padding-bottom: 50px; /* This should be the same height as the footer */
+}
+
 #trash_bin {
     margin-top: 1.5%;
     display: flex;
@@ -18,7 +25,6 @@ body {
 }
 
 footer {
-    position: sticky;
-    margin-bottom: 0;
+    height: 50px;
     width: 100%;
 }
