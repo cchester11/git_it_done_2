@@ -2,6 +2,7 @@ const username_input_value = $('#username_input_value')
 const submit_input_button = $('#submit_input_button')
 const search_value_span_el = $('#search_value_span_el')
 const search_results_div = $('#search_results_div')
+const trash_bin = $('#trash_bin')
 
 function setLocalSearchVal(searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
@@ -101,6 +102,7 @@ function inputSubmission(event) {
 }
 
 $(submit_input_button).on('click', inputSubmission)
+
 $(search_results_div).on('click', (event) => {
       let container = event.target.parentElement
       let repo = event.target.textContent
@@ -114,6 +116,13 @@ $(search_results_div).on('click', (event) => {
       let owner = (slash !== -1) ? repo.substring(0, slash) : alert('Please enter a valid repo name')
       let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
       fetchSingleRepoIssues(owner, name, container)
+})
+
+$(trash_bin).on('click', () => {
+      setLocalData('')
+      setLocalSearchVal('')
+      search_results_div.empty()
+      search_value_span_el.text('')
 })
 
 $(window).on('load', function() {
