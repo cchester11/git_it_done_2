@@ -59,7 +59,7 @@ function fetchRepos(user) {
                                     console.log(data)
                               })
                   } else {
-                        alert("Error: " + results.statusText)
+                        alert("Error: User not found")
                   }
             })
             .catch(err => {
@@ -89,6 +89,7 @@ function fetchSingleRepoIssues(owner, repo, container) {
 function inputSubmission(event) {
       event.preventDefault()
       setLocalSearchVal('')
+      setLocalData('')
       let user = username_input_value.val()
       setLocalSearchVal(user)
       if (user) {
@@ -115,7 +116,7 @@ $(search_results_div).on('click', (event) => {
       fetchSingleRepoIssues(owner, name, container)
 })
 
-search_results_div.onload = function() {
+$(window).on('load', function() {
       let storedVal = JSON.parse(localStorage.getItem('stored_search_val'));
       let storedData = JSON.parse(localStorage.getItem('stored_search_data'));
 
@@ -131,4 +132,4 @@ search_results_div.onload = function() {
             container.append(repoNameContainer)
             search_results_div.append(container)
       })
-}
+})
