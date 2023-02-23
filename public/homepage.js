@@ -89,7 +89,9 @@ function fetchSingleRepoIssues(owner, repo, container) {
 
 function inputSubmission(event) {
       event.preventDefault()
+      setLocalStorage('')
       let user = username_input_value.val()
+      setLocalStorage(user)
       if (user) {
             fetchRepos(user)
             username_input_value.val('')
