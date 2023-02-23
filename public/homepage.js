@@ -3,38 +3,12 @@ const submit_input_button = $('#submit_input_button')
 const search_value_span_el = $('#search_value_span_el')
 const search_results_div = $('#search_results_div')
 
-function setLocalStorage(searchVal) {
+function setLocalSearchVal(searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
 }
-
-// function onReload() {
-//       let searchVal = JSON.parse(localStorage.getItem('stored_search_val'));
-//       fetch("https://api.github.com/users/" + searchVal + "/repos", {
-//             method: 'get'
-//       })
-//             .then(results => {
-//                   if (results.ok) {
-//                         results.json()
-//                   } else {
-//                         alert("Error: " + response.statusText)
-//                         return;
-//                   }
-//             })
-//             .then(data => {
-//                   $(search_value_span_el).text(searchVal)
-//                   data.map((repo) => {
-//                         let container = $('<div>')
-//                         $(container).attr('class', 'card-body bg-dark text-light border border-success-subtle m-1 rounded')
-//                         $(container).attr('style', "--bs-border-opacity: .5;")
-//                         let repoNameContainer = $('<h2>')
-//                         let repoName = `${repo.full_name}`
-//                         $(repoNameContainer).text(repoName)
-
-//                         container.append(repoNameContainer)
-//                         search_results_div.append(container)
-//                   })
-//             })
-// }
+function setLocalData (searchData) {
+      localStorage.setItem('stored_search_data', JSON.stringify(searchData))
+}
 
 function displayResults(repos, user) {
       $(search_results_div).empty()
@@ -80,6 +54,7 @@ function fetchRepos(user) {
                   if (results.ok) {
                         results.json()
                               .then(data => {
+                                    setLocalData(data)
                                     displayResults(data, user)
                                     console.log(data)
                               })
@@ -113,9 +88,9 @@ function fetchSingleRepoIssues(owner, repo, container) {
 
 function inputSubmission(event) {
       event.preventDefault()
-      setLocalStorage('')
+      setLocalSearchVal('')
       let user = username_input_value.val()
-      setLocalStorage(user)
+      setLocalSearchVal(user)
       if (user) {
             fetchRepos(user)
             username_input_value.val('')
@@ -139,3 +114,21 @@ $(search_results_div).on('click', (event) => {
       let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
       fetchSingleRepoIssues(owner, name, container)
 })
+
+search_results_div.onload = function() {
+      let storedVal = JSON.parse(localStorage.getItem('stored_search_val'));
+      let storedData = JSON.parse(localStorage.getItem('stored_search_data'));
+
+      $(search_value_span_el).text(storedVal)
+      storedData.map((repo) => {
+            let container = $('<div>')
+            $(container).attr('class', 'card-body bg-dark text-light border border-success-subtle m-1 rounded')
+            $(container).attr('style', "--bs-border-opacity: .5;")
+            let repoNameContainer = $('<h2>')
+            let repoName = `${repo.full_name}`
+            $(repoNameContainer).text(repoName)
+
+            container.append(repoNameContainer)
+            search_results_div.append(container)
+      })
+}
