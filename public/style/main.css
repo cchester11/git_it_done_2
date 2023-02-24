@@ -10,6 +10,15 @@ body {
     font-weight: lighter;
 }
 
+a {
+    text-decoration: none;
+}
+
+footer {
+    height: 50px;
+    width: 100%;
+}
+
 .wrapper {
     min-height: 100%;
     margin-bottom: -50px; /* This should be the same height as the footer */
@@ -22,9 +31,5 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-footer {
-    height: 50px;
-    width: 100%;
+    cursor: pointer;
 }
