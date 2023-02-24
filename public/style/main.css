@@ -26,6 +26,16 @@ footer {
     padding-bottom: 50px; /* This should be the same height as the footer */
 }
 
+.issue-container {
+    cursor: pointer;
+}
+.issue-container:hover {
+    border: 1px;
+    border-color: rbg(0.8, 0.8, 0.8);
+    border-style: solid;
+    border-radius: 5%;
+}
+
 #trash_bin {
     margin-top: 1.5%;
     display: flex;
