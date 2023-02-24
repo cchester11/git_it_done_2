@@ -105,7 +105,7 @@ $(submit_input_button).on('click', inputSubmission)
 
 $(search_results_div).on('click', (event) => {
       let clickedElement = event.target.tagName.toLowerCase()
-      
+
       if (clickedElement === 'h2') {
             let container = event.target.parentElement
             let repo = event.target.textContent
@@ -120,7 +120,10 @@ $(search_results_div).on('click', (event) => {
             let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
             fetchSingleRepoIssues(owner, name, container)
       } else if (clickedElement === 'ul') {
-            console.log('user clicked on an issue')
+            let issue = $(clickedElement).text().trim()
+            let colon = issue.indexOf(':')
+            let issueText = issue.substring(colon + 2)
+            console.log(issueText)
       } else {
             return;
       }
