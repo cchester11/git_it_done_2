@@ -7,7 +7,7 @@ const trash_bin = $('#trash_bin')
 function setLocalSearchVal(searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
 }
-function setLocalData (searchData) {
+function setLocalData(searchData) {
       localStorage.setItem('stored_search_data', JSON.stringify(searchData))
 }
 
@@ -104,18 +104,26 @@ function inputSubmission(event) {
 $(submit_input_button).on('click', inputSubmission)
 
 $(search_results_div).on('click', (event) => {
-      let container = event.target.parentElement
-      let repo = event.target.textContent
+      let clickedElement = event.target.tagName.toLowerCase()
+      
+      if (clickedElement === 'h2') {
+            let container = event.target.parentElement
+            let repo = event.target.textContent
 
-      if ($(container).find('ul').length > 0) {
+            if ($(container).find('ul').length > 0) {
+                  return;
+            }
+
+            let slash = repo.indexOf('/')
+
+            let owner = (slash !== -1) ? repo.substring(0, slash) : alert('Please enter a valid repo name')
+            let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
+            fetchSingleRepoIssues(owner, name, container)
+      } else if (clickedElement === 'ul') {
+            console.log('user clicked on an issue')
+      } else {
             return;
       }
-
-      let slash = repo.indexOf('/')
-
-      let owner = (slash !== -1) ? repo.substring(0, slash) : alert('Please enter a valid repo name')
-      let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
-      fetchSingleRepoIssues(owner, name, container)
 })
 
 $(trash_bin).on('click', () => {
@@ -125,11 +133,11 @@ $(trash_bin).on('click', () => {
       search_value_span_el.text('')
 })
 
-$(window).on('load', function() {
+$(window).on('load', function () {
       let storedVal = JSON.parse(localStorage.getItem('stored_search_val'));
       let storedData = JSON.parse(localStorage.getItem('stored_search_data'));
 
-      if(storedData === '' && storedVal === '') {
+      if (storedData === '' && storedVal === '') {
             return;
       }
 
