@@ -81,6 +81,9 @@ function fetchSingleRepoIssues(owner, repo, container) {
             })
             .then(data => {
                   (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
+                  // empty global object
+                  //write a loop that saves each issues title and number property to a global object
+                  // search_results_div conditional on clickedElement === 'ul' will find a matching title and issueText and send a fetch request for the associated number
             })
             .catch(err => {
                   throw new Error(err)
@@ -124,6 +127,17 @@ $(search_results_div).on('click', (event) => {
             let colon = issue.indexOf(':')
             let issueText = issue.substring(colon + 2)
             console.log(issueText)
+            //run a loop through each nested object of the global storage object and find a matching title property
+            // if matches then iteration.number gets saved to a var which is passed into the fetch request
+            // fetch("https://api.github.com/repos/cchester11/bassBuddy/issues/"+number, {
+            //       method: "get"
+            // })
+                  // .then(results => {
+                  //       return results.json()
+                  // })
+                  //       .then(data => {
+                  //             console.log(data)
+                  //       })
       } else {
             return;
       }
