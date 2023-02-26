@@ -84,10 +84,12 @@ function fetchSingleRepoIssues(owner, repo, container) {
             .then(data => {
                   (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
                   data.forEach((issue) => {
-                        storeClickedIssues.push(
-                              { issue_title: issue.title },
-                              { number: issue.number }
-                        )
+                        storeClickedIssues.push([
+                              {
+                                    issue_title: issue.title,
+                                    issue_number: issue.number
+                              }
+                        ])
                   })
                   console.log(storeClickedIssues)
                   // search_results_div conditional on clickedElement === 'ul' will find a matching title and issueText and send a fetch request for the associated number
@@ -141,7 +143,7 @@ $(search_results_div).on('click', (event) => {
             let colon = issue.indexOf(':')
             let issueText = issue.substring(colon + 2)
             console.log(issueText)
-            //run a loop through each nested object of the global storage object and find a matching title property
+            //run a loop through each nested object of the global storage object and find a matching title property 
             // if matches then iteration.number gets saved to a var which is passed into the fetch request
             // fetch("https://api.github.com/repos/cchester11/"+repo+"/issues/"+number, {
             //       method: "get"
