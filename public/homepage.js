@@ -4,6 +4,8 @@ const search_value_span_el = $('#search_value_span_el')
 const search_results_div = $('#search_results_div')
 const trash_bin = $('#trash_bin')
 
+let storeClickedIssues = [];
+
 function setLocalSearchVal(searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
 }
@@ -81,8 +83,13 @@ function fetchSingleRepoIssues(owner, repo, container) {
             })
             .then(data => {
                   (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
-                  // empty global object
-                  //write a loop that saves each issues title and number property to a global object
+                  data.forEach((issue) => {
+                        storeClickedIssues.push(
+                              { issue_title: issue.title },
+                              { number: issue.number }
+                        )
+                  })
+                  console.log(storeClickedIssues)
                   // search_results_div conditional on clickedElement === 'ul' will find a matching title and issueText and send a fetch request for the associated number
             })
             .catch(err => {
@@ -110,6 +117,8 @@ $(search_results_div).on('click', (event) => {
       let clickedElement = event.target.tagName.toLowerCase()
 
       if (clickedElement === 'h2') {
+            storeClickedIssues = []
+
             let container = event.target.parentElement
             let repo = event.target.textContent
 
@@ -121,6 +130,11 @@ $(search_results_div).on('click', (event) => {
 
             let owner = (slash !== -1) ? repo.substring(0, slash) : alert('Please enter a valid repo name')
             let name = (slash !== -1) ? repo.substring(slash + 1) : alert('Please enter a valid repo name')
+
+            storeClickedIssues.push({
+                  repo_title: name
+            })
+
             fetchSingleRepoIssues(owner, name, container)
       } else if (clickedElement === 'ul') {
             let issue = $(clickedElement).text().trim()
@@ -129,15 +143,15 @@ $(search_results_div).on('click', (event) => {
             console.log(issueText)
             //run a loop through each nested object of the global storage object and find a matching title property
             // if matches then iteration.number gets saved to a var which is passed into the fetch request
-            // fetch("https://api.github.com/repos/cchester11/bassBuddy/issues/"+number, {
+            // fetch("https://api.github.com/repos/cchester11/"+repo+"/issues/"+number, {
             //       method: "get"
             // })
-                  // .then(results => {
-                  //       return results.json()
-                  // })
-                  //       .then(data => {
-                  //             console.log(data)
-                  //       })
+            // .then(results => {
+            //       return results.json()
+            // })
+            //       .then(data => {
+            //             console.log(data)
+            //       })
       } else {
             return;
       }
