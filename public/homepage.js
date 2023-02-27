@@ -147,14 +147,21 @@ $(search_results_div).on('click', (event) => {
             fetchSingleRepoIssues(owner, name, container)
       } else if (clickedElement === 'ul') {
             let issue = $(clickedValue).text().trim()
-            console.log('grabbing value of clicked on target')
-            console.log(issue)
             let colon = issue.indexOf(':')
             let issueText = issue.substring(colon + 2)
             console.log('splitting clicked on target at :')
             console.log(issueText)
             //run a loop through each nested object of the global storage object and find a matching title property 
             // if matches then iteration.number gets saved to a var which is passed into the fetch request
+            for(let i = 0; i < storeClickedIssues.length; i ++) {
+                  let currentIssue = storeClickedIssues[i]
+                  if(Array.isArray(currentIssue)) {
+                        console.log('issue number for ' + currentIssue[0].issue_title + ' is')
+                        console.log(currentIssue[0].issue_number)
+                  } else {
+                        console.log('repo title for object is ' + currentIssue.repo_title)
+                  }
+            }
             // fetch("https://api.github.com/repos/cchester11/"+repo+"/issues/"+number, {
             //       method: "get"
             // })
