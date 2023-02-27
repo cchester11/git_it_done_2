@@ -43,6 +43,7 @@ function displayIssues(data, container) {
             let issue_text = `Issue: ${issue.title}`
 
             issue_item.textContent = issue_text
+            $(issue_item).attr('class', 'badge text-dark')
 
             issue_container.appendChild(issue_item)
             container.appendChild(issue_container)
@@ -122,6 +123,7 @@ $(submit_input_button).on('click', inputSubmission)
 
 $(search_results_div).on('click', (event) => {
       let clickedElement = event.target.tagName.toLowerCase()
+      let clickedValue = event.target
 
       if (clickedElement === 'h2') {
             storeClickedIssues = []
@@ -144,10 +146,13 @@ $(search_results_div).on('click', (event) => {
 
             fetchSingleRepoIssues(owner, name, container)
       } else if (clickedElement === 'ul') {
-            let issue = $(clickedElement).text().trim()
+            let issue = $(clickedValue).text().trim()
+            console.log('grabbing value of clicked on target')
+            console.log(issue)
             let colon = issue.indexOf(':')
             let issueText = issue.substring(colon + 2)
-            console.log('clicked on ul: ' + issueText)
+            console.log('splitting clicked on target at :')
+            console.log(issueText)
             //run a loop through each nested object of the global storage object and find a matching title property 
             // if matches then iteration.number gets saved to a var which is passed into the fetch request
             // fetch("https://api.github.com/repos/cchester11/"+repo+"/issues/"+number, {
