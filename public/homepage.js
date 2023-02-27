@@ -5,6 +5,7 @@ const search_results_div = $('#search_results_div')
 const trash_bin = $('#trash_bin')
 
 let storeClickedIssues = [];
+let storeTargetIssue = [];
 
 function setLocalSearchVal(searchVal) {
       localStorage.setItem('stored_search_val', JSON.stringify(searchVal))
@@ -146,31 +147,46 @@ $(search_results_div).on('click', (event) => {
 
             fetchSingleRepoIssues(owner, name, container)
       } else if (clickedElement === 'ul') {
+            storeTargetIssue = []
+
             let issue = $(clickedValue).text().trim()
             let colon = issue.indexOf(':')
             let issueText = issue.substring(colon + 2)
+
             console.log('splitting clicked on target at :')
             console.log(issueText)
-            //run a loop through each nested object of the global storage object and find a matching title property 
-            // if matches then iteration.number gets saved to a var which is passed into the fetch request
+
             for(let i = 0; i < storeClickedIssues.length; i ++) {
                   let currentIssue = storeClickedIssues[i]
                   if(Array.isArray(currentIssue)) {
-                        console.log('issue number for ' + currentIssue[0].issue_title + ' is')
-                        console.log(currentIssue[0].issue_number)
-                  } else {
-                        console.log('repo title for object is ' + currentIssue.repo_title)
+                        if(currentIssue[0].issue_title === issueText) {
+                              storeTargetIssue.push(currentIssue[0].issue_title)
+                              storeTargetIssue.push(currentIssue[0].issue_number)
+                              break;
+                        }
+                  } else if (currentIssue.repo_title) {
+                        storeTargetIssue.push(currentIssue.repo_title)
                   }
             }
-            // fetch("https://api.github.com/repos/cchester11/"+repo+"/issues/"+number, {
-            //       method: "get"
-            // })
-            // .then(results => {
-            //       return results.json()
-            // })
-            //       .then(data => {
-            //             console.log(data)
-            //       })
+
+            console.log('storeTargetIssue array data')
+            console.log(storeTargetIssue)
+
+            let repo_store = storeTargetIssue[0]
+            // let issue_store = storeTargetIssue[1]
+            let number_store = JSON.stringify(storeTargetIssue[2])
+            console.log(repo_store, number_store)
+
+            fetch("https://api.github.com/repos/cchester11/"+repo_store+"/issues/"+number_store, {
+                  method: "get"
+            })
+            .then(results => {
+                  return results.json()
+            })
+                  .then(data => {
+                        console.log('data for clicked on issue')
+                        console.log(data)
+                  })
       } else {
             return;
       }
