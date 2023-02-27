@@ -41,7 +41,7 @@ function displayIssues(data, container) {
             let issue_item = document.createElement('ul')
             $(issue_item).attr('class', 'card-text')
             let issue_text = `Issue: ${issue.title}`
-            console.log(issue_text)
+
             issue_item.textContent = issue_text
 
             issue_container.appendChild(issue_item)
@@ -59,6 +59,7 @@ function fetchRepos(user) {
                               .then(data => {
                                     setLocalData(data)
                                     displayResults(data, user)
+                                    console.log('data for all repos associated with searched user')
                                     console.log(data)
                               })
                   } else {
@@ -83,6 +84,9 @@ function fetchSingleRepoIssues(owner, repo, container) {
             })
             .then(data => {
                   (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
+                  console.log('data for each issue displayed')
+                  console.log(data)
+                  // storing important data for all issues
                   data.forEach((issue) => {
                         storeClickedIssues.push([
                               {
@@ -91,6 +95,7 @@ function fetchSingleRepoIssues(owner, repo, container) {
                               }
                         ])
                   })
+                  console.log('storeClickedIssues data')
                   console.log(storeClickedIssues)
                   // search_results_div conditional on clickedElement === 'ul' will find a matching title and issueText and send a fetch request for the associated number
             })
@@ -142,7 +147,7 @@ $(search_results_div).on('click', (event) => {
             let issue = $(clickedElement).text().trim()
             let colon = issue.indexOf(':')
             let issueText = issue.substring(colon + 2)
-            console.log(issueText)
+            console.log('clicked on ul: ' + issueText)
             //run a loop through each nested object of the global storage object and find a matching title property 
             // if matches then iteration.number gets saved to a var which is passed into the fetch request
             // fetch("https://api.github.com/repos/cchester11/"+repo+"/issues/"+number, {
