@@ -51,6 +51,21 @@ function displayIssues(data, container) {
       })
 }
 
+function displayIssueDescription (data) {
+      let description = data.body
+      console.log(description)
+      
+      let masterContainer = $('<div>')
+      let textContainer = $('<p>')
+      let exitBtn = $('<button>')
+
+      $(exitBtn).text('X')
+      $(textContainer).text(description)
+      $(textContainer).append(exitBtn)
+      $(masterContainer).append(textContainer)
+      $(masterContainer).attr('style', 'z-index: 9000')
+}
+
 function fetchRepos(user) {
       fetch("https://api.github.com/users/" + user + "/repos", {
             method: 'get'
@@ -88,7 +103,7 @@ function fetchSingleRepoIssues(owner, repo, container) {
                   (data.length === 0) ? alert('There are no active issues associated with this repo') : displayIssues(data, container)
                   console.log('data for each issue displayed')
                   console.log(data)
-                  // storing important data for all issues
+                  // storing important data for all issues globally
                   data.forEach((issue) => {
                         storeClickedIssues.push([
                               {
@@ -99,11 +114,25 @@ function fetchSingleRepoIssues(owner, repo, container) {
                   })
                   console.log('storeClickedIssues data')
                   console.log(storeClickedIssues)
-                  // search_results_div conditional on clickedElement === 'ul' will find a matching title and issueText and send a fetch request for the associated number
             })
             .catch(err => {
                   throw new Error(err)
             })
+}
+
+function fetchIssueDescription (title, number) {
+      fetch("https://api.github.com/repos/cchester11/"+title+"/issues/"+number, {
+                  method: "get"
+            })
+            .then(results => {
+                  return results.json()
+            })
+                  .then(data => {
+                        console.log('data for clicked on issue')
+                        console.log(data) 
+                        console.log('body of issue')
+                        displayIssueDescription(data)
+                  })
 }
 
 function inputSubmission(event) {
@@ -177,16 +206,8 @@ $(search_results_div).on('click', (event) => {
             let number_store = JSON.stringify(storeTargetIssue[2])
             console.log(repo_store, number_store)
 
-            fetch("https://api.github.com/repos/cchester11/"+repo_store+"/issues/"+number_store, {
-                  method: "get"
-            })
-            .then(results => {
-                  return results.json()
-            })
-                  .then(data => {
-                        console.log('data for clicked on issue')
-                        console.log(data)
-                  })
+            fetchIssueDescription(repo_store, number_store)
+            // then write a function for displaying description
       } else {
             return;
       }

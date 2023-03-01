@@ -14,10 +14,7 @@ Implementation after Beta
 
 Issues 
 (done) 1. When user clicks a repo that has already been clicked, the issues for that repo populate in a container div again. and again if clicked again
-2. When searching for a user after a previous search, page needs to reload with new data
+(done) 2. When searching for a user after a previous search, page needs to reload with new data
 
 Ideas after post beta phase
 1. store search history in json file 
-Implementation for Alpha
-1. Install React 
-2. create components for homepage and single page
