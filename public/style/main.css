@@ -35,6 +35,8 @@ ul {
     z-index: 9000;
     width: 300px;
     height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
     background-color: whitesmoke;
     border-radius: 30px;
     position: absolute;
@@ -48,9 +50,18 @@ ul {
     font-weight: lighter;
     font-size: large;
 }
-.issueDescriptionContainer {
-    overflow: hidden;
-    overflow-y: scroll;
+.issueDescriptionContainer::-webkit-scrollbar {
+    width: 0.5em;
+}
+  
+  .issueDescriptionContainer::-webkit-scrollbar-track {
+    background-color: dimgrey;
+    border-radius: 5px;
+}
+  
+  .issueDescriptionContainer::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 5px;
 }
 .description_box {
     width: 300px;
