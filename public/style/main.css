@@ -46,7 +46,15 @@ ul {
     justify-content: center;
     align-items: center;
     font-weight: lighter;
-    font-size: large; 
+    font-size: large;
+}
+.issueDescriptionContainer {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.description_box {
+    width: 300px;
+    height: 300px;
 }
 .hideDescriptionBtn {
     border-color: black;
