@@ -3,6 +3,9 @@ const submit_input_button = $('#submit_input_button')
 const search_value_span_el = $('#search_value_span_el')
 const search_results_div = $('#search_results_div')
 const trash_bin = $('#trash_bin')
+const issueDescriptionContainer = $('#issueDescriptionContainer')
+const description_box = $('#description_box')
+const hideDescriptionBtn = $('#hideDescriptionBtn')
 
 let storeClickedIssues = [];
 let storeTargetIssue = [];
@@ -55,9 +58,10 @@ function displayIssueDescription (data) {
       let description = data.body
       console.log(description)
 
-      // write global variable to grab issueDescriptionContainer
-      // set visibility to display: flex
-      // populate description subdiv with body property of data
+      let description_body = $('<p>')
+      description_body.text(description)
+      description_box.append(description_body)
+      $(issueDescriptionContainer).attr('style', 'display: flex')
 }
 
 function fetchRepos(user) {
@@ -201,7 +205,6 @@ $(search_results_div).on('click', (event) => {
             console.log(repo_store, number_store)
 
             fetchIssueDescription(repo_store, number_store)
-            // then write a function for displaying description
       } else {
             return;
       }
@@ -212,6 +215,11 @@ $(trash_bin).on('click', () => {
       setLocalSearchVal('')
       search_results_div.empty()
       search_value_span_el.text('')
+})
+
+$(hideDescriptionBtn).on('click', () => {
+      $(description_box).empty()
+      $(issueDescriptionContainer).attr('style', 'display: none')
 })
 
 $(window).on('load', function () {
