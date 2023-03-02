@@ -5,6 +5,7 @@ const search_results_div = $('#search_results_div')
 const trash_bin = $('#trash_bin')
 const issueDescriptionContainer = $('#issueDescriptionContainer')
 const description_box = $('#description_box')
+const description_p = $('.description_p')
 const hideDescriptionBtn = $('#hideDescriptionBtn')
 
 let storeClickedIssues = [];
@@ -58,7 +59,7 @@ function displayIssueDescription (data) {
       let description = data.body
       console.log(description)
 
-      let description_body = $('<p>')
+      let description_body = $(description_p)
       description_body.text(description)
       description_box.append(description_body)
       $(issueDescriptionContainer).attr('style', 'display: flex')

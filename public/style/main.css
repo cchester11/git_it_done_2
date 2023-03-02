@@ -56,6 +56,9 @@ ul {
     width: 300px;
     height: 300px;
 }
+.description_p {
+    padding: 50px;
+}
 .hideDescriptionBtn {
     border-color: black;
     right: 5%;
