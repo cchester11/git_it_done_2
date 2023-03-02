@@ -33,8 +33,8 @@ ul {
 .issueDescriptionContainer {
     /* higher the z-index the closer to the top of the stack  */
     z-index: 9000;
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 450px;
     overflow: hidden;
     overflow-y: scroll;
     background-color: whitesmoke;
@@ -64,10 +64,13 @@ ul {
     border-radius: 5px;
 }
 .description_box {
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 450px;
 }
 .description_p {
+    font-weight: lighter;
+    font-style: normal;
+    font-size: large;
     padding: 50px;
 }
 .hideDescriptionBtn {
