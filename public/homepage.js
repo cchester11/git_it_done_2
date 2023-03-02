@@ -54,16 +54,10 @@ function displayIssues(data, container) {
 function displayIssueDescription (data) {
       let description = data.body
       console.log(description)
-      
-      let masterContainer = $('<div>')
-      let textContainer = $('<p>')
-      let exitBtn = $('<button>')
 
-      $(exitBtn).text('X')
-      $(textContainer).text(description)
-      $(textContainer).append(exitBtn)
-      $(masterContainer).append(textContainer)
-      $(masterContainer).attr('style', 'z-index: 9000')
+      // write global variable to grab issueDescriptionContainer
+      // set visibility to display: flex
+      // populate description subdiv with body property of data
 }
 
 function fetchRepos(user) {

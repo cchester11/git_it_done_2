@@ -30,6 +30,31 @@ ul {
     cursor: pointer;
 }
 
+.issueDescriptionContainer {
+    /* higher the z-index the closer to the top of the stack  */
+    z-index: 9000;
+    width: 300px;
+    height: 300px;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+    font-size: large; 
+}
+.hideDescriptionBtn {
+    border-color: black;
+    right: 5%;
+    top: 5%;
+    position: fixed;
+}
+
 #trash_bin {
     margin-top: 1.5%;
     display: flex;
