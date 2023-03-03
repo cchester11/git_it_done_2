@@ -10,8 +10,10 @@ const lint_check = require('./lint.js')
 
 const app = express()
 // set up handlebars as the view engine for our express middleware
-app.engine('handlebars', engine())
-app.set('view engine', 'handlebars')
+app.engine('hbs', engine({
+      extname: '.hbs'
+}))
+app.set('view engine', 'hbs')
 app.set('views', './views')
 
 // tells express to serve the whole folder so that the javascript will be read in the browser
